@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="ConvertorProject:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ConvertorProject_jar</output-path>
+    <root id="archive" name="ConvertorProject.jar">
+      <element id="module-output" name="ConverterProject" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/external libs/jnativehook-2.1.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
