@@ -5,36 +5,37 @@ import java.util.regex.Pattern;
 
 public class HebToEng implements Converter {
 
-    private static final Map<Character, Character> dict = new HashMap<>();
-    private static final char[] engAlphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-    private static final char[] hebAlphabet = "שנבגקכעיןחלךצמםפ/רדאוה'סטז".toCharArray();
+    private final Map<Character, Character> mapByKeyboard = new HashMap<>();
+    private final char[] engAlphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+    private final char[] hebAlphabet = "שנבגקכעיןחלךצמםפ/רדאוה'סטז".toCharArray();
 
-    public static void Init() {
-
-        for (int i = 0; i < engAlphabet.length; i++) {
-
-            dict.put(hebAlphabet[i], engAlphabet[i]);
-        }
-
-        dict.put('ת', ',');
-        dict.put('ץ', '.');
-        dict.put('ף', ';');
-        dict.put('.', '/');
-        dict.put(',', '’');
+    public HebToEng() {
+        initKeyboardMap();
     }
 
+    public void initKeyboardMap() {
+
+        for (int i = 0; i < engAlphabet.length; i++) {
+            mapByKeyboard.put(hebAlphabet[i], engAlphabet[i]);
+        }
+
+        mapByKeyboard.put('ת', ',');
+        mapByKeyboard.put('ץ', '.');
+        mapByKeyboard.put('ף', ';');
+        mapByKeyboard.put('.', '/');
+        mapByKeyboard.put(',', '’');
+    }
 
     @Override
     public String convert(String text) {
-
         char[] textArr = text.toCharArray();
         char[] res = new char[textArr.length];
         int i = 0;
 
         for (char c : textArr) {
 
-            if (dict.containsKey(c)) {
-                res[i] = dict.get(c);
+            if (mapByKeyboard.containsKey(c)) {
+                res[i] = mapByKeyboard.get(c);
             } else {
                 res[i] = textArr[i];
             }

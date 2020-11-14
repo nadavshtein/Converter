@@ -23,7 +23,7 @@ import static org.jnativehook.keyboard.NativeKeyEvent.getKeyText;
 public class OnBackground implements NativeKeyListener {
 
     private final CountDownLatch mLatch = new CountDownLatch(1000000000); //10000000 key events untill exiting
-    private static Converter converter;
+    private static Converter converter = new EngToHeb();
 
     public static void main(final String[] args)
             throws NativeHookException, InterruptedException, IOException {
@@ -32,10 +32,7 @@ public class OnBackground implements NativeKeyListener {
             System.out.println("SystemTray is not supported");
             return;
         }
-        EngToHeb.Init();
-        HebToEng.Init();
         setSystemTrayMenu();
-
         disableNativeHookLogger();
         registerNativeHook();
 
